@@ -16,7 +16,7 @@ namespace sistema_loja_venda.Entidades
         public decimal Valor { get; set; }
 
         [ForeignKey("Categoria")]
-        public int Codigo_Categoria { get; set; }
+        public int Codigo_categoria { get; set; }
         public Categoria Categoria { get; set; }
         public ICollection<Venda_Produtos> Vendas { get; set; }
 

@@ -9,7 +9,6 @@ namespace sistema_loja_venda.Entidades
 {
     public class Venda_Produtos
     {
-        
         public int Codigo_venda { get; set; }
         public int Codigo_produto { get; set; }
         public double Quantidade { get; set; }

@@ -14,9 +14,9 @@ namespace sistema_loja_venda.Entidades
         public DateTime Data { get; set; }
 
         [ForeignKey("Cliente")]
-        public int Codigo_Cliente { get; set; }
+        public int Codigo_cliente { get; set; }
         public Cliente Cliente { get; set; }
         public decimal Total { get; set; }
-
+        public ICollection<Venda_Produtos> Produtos { get; set; }
     }
 }

@@ -16,6 +16,9 @@ namespace sistema_loja_venda.Controllers.DAL
         public DbSet<Venda> Venda { get; set; }
         public DbSet<Venda_Produtos> Venda_Produtos { get; set; }
 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
+
         // Essa classe está usuando a biblioteca do EntityFrameWork, e tem como
         // objetivo mapear as entidades para realizar as operações do sistema...
         protected override void OnModelCreating(ModelBuilder builder)

@@ -1,1 +1,27 @@
-﻿
+﻿@{
+    ViewData["title"] = "Cadastro";
+}
+
+<h2>Categorias</h2>
+<hr />
+
+@model sistema_loja_venda.Models.CategoriaViewModel
+
+<form asp-controller="Categoria" asp-action="Cadastro" method="post">
+    <input type="hidden" asp-for="Codigo" value="@Model.Codigo"/>
+
+    <div class="form-group">
+        <div class="col-4">
+            <label>Descrição</label>
+            <input asp-for="Descricao" type="text" value="@Model.Descricao" class="form-control" />
+        </div>
+        <br />
+        <div class="col">
+            <button type="button" class="btn bnt-info" onclick="Novo()">Novo</button>
+            <button type="submit" class="btn bnt-success">Gravar</button>
+            <button type="button" class="btn bnt-warning" onclick="Listagem()">Listagem</button>
+            <button type="button" class="btn <b></b>nt-dagger" onclick="Excluir(@Model.Codigo)">Excluir</button>
+
+        </div>
+    </div>
+</form> 

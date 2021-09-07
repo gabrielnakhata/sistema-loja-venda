@@ -6,15 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Home\**" />
-    <Content Remove="Views\Home\**" />
-    <EmbeddedResource Remove="Views\Home\**" />
-    <None Remove="Views\Home\**" />
+    <Folder Include="Controllers\Helpers\" />
+    <Folder Include="Views\Venda\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Helpers\" />
-    <Folder Include="Views\Venda\" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,6 +13,7 @@ namespace sistema_loja_venda.Entidades
         public int? Codigo { get; set; }
         public string Descricao { get; set; }
         public double Quantidade { get; set; }
+
         public decimal Valor { get; set; }
 
         [ForeignKey("Categoria")]

@@ -14,7 +14,7 @@ namespace sistema_loja_venda.Controllers
     {
         protected ApplicationDbContext mContext;
 
-        public CategoriaController(ApplicationDbContext context)
+        public CategoriaController(ApplicationDbContext context) // O objeto ApplicationDbContext está sendo injetado no construtor da classe CategoriaController...
         {
             mContext = context; 
         }
@@ -25,13 +25,14 @@ namespace sistema_loja_venda.Controllers
             return View(lista);
         }
 
-        [HttpGet]
-        public IActionResult Cadastro(int? id)
+        [HttpGet] // Atributo, decora uma função, procedimento ou classe determinando seu comportamento...
+        public IActionResult Cadastro(int? id) // O operador "?", indica que a avariável é anulável, ou seja, pode receber valor "null".
         {
             CategoriaViewModel viewModel = new CategoriaViewModel();
 
             if (id != null)
             {
+
                 var entidade = mContext.Categoria.Where(x => x.Codigo == id).FirstOrDefault();
                 viewModel.Codigo = entidade.Codigo;
                 viewModel.Descricao = entidade.Descricao;
@@ -40,7 +41,7 @@ namespace sistema_loja_venda.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
+        [HttpPost] // 
         public IActionResult Cadastro(CategoriaViewModel entidade)
         {
             if (ModelState.IsValid)

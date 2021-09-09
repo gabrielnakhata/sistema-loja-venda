@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Helpers\" />
-    <Folder Include="Views\Venda\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 
   <ItemGroup>

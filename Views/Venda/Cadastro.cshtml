@@ -1,0 +1,166 @@
+﻿@{
+    ViewData["title"] = "Cadastro | Vendas";
+}
+
+<h2>Venda</h2>
+<hr />
+
+@model sistema_loja_venda.Models.VendaViewModel
+
+@{
+    var disabled = (Model.Codigo == null) ? "disabled" : string.Empty;
+}
+
+<form asp-controller="Venda" asp-action="Cadastro" method="post">
+    <input type="hidden" asp-for="Codigo" value="@Model.Codigo" />
+
+    <div class="form-group">
+        <div class="col-4">
+            <label>Data</label>
+            <input asp-for="Data" type="Date" value="@Model.Data" class="form-control" />
+            <span asp-validation-for="Data" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-4">
+            <label>Cliente</label>
+            <select asp-for="Codigo_cliente" asp-items="Model.ListaClientes" class="form-control" input-lg></select>
+            <span asp-validation-for="Codigo_cliente" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-4">
+            <label>Produtos</label>
+            <select id="cboProduto" onchange="BuscarPrecoProduto()" asp-items="Model.ListaProdutos" class="form-control" input-lg></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Preço unitário</label>
+            <input id="txtPrecoUnitario" type="number" class="form-control" diabled />
+        </div>
+        <div class="col-md-2">
+            <label>Quantidade</label>
+            <input id="txtQtde" type="number" class="form-control" onchange="CalcularSubTotal()" />
+        </div>
+        <div class="col-md-2">
+            <label>Sub-Total</label>
+            <input id="txtSubTotal" type="number" class="form-control" diabled />
+        </div>
+        <div class="col-md-2">
+            <br/>
+            <button type="button" class="btn btn-info" onclick="AddProduto()">Adicionar</button>
+            <br/>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead class="thread-inverse">
+                        <tr style="background-color:#f6f6f6;">
+                            <th>Produto</th>
+                            <th>Preço Unitário</th>
+                            <th>Qtde</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gridProdutos"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>Total</label>
+                <input id="txtTotal" asp-for="Total" type="text" value="@Model.Total" class="form-control" />   
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+
+            <textarea asp-for="JsonProdutos" id="txtJsonProdutos" class="col" style="display:none;"></textarea>
+
+        <br />
+        <div class="col">
+            <button type="button" class="btn btn-info" onclick="Novo()">Novo</button>
+            <button type="submit" class="btn btn-success">Gravar</button>
+            <button type="button" class="btn btn-warning" onclick="Listagem()">Listagem</button>
+            <button type="button" class="btn btn-danger" onclick="Excluir(@Model.Codigo)" @disabled>Excluir</button>
+        </div>
+    </div>
+</form>
+<script>
+    var Items = new Objetc();
+    Items.Produtos = new Array();
+    var gridProdutos = document.getElementById("gridProdutos");
+
+    function fixaDuasCasasDecimais(um) {
+        return parseFloat(Math.round(num * 100) / 100).toFixed(2);
+    }
+
+    function AddProduto() {
+        var CodigoProduto = documet.getElementById("cboProduto")
+        var Qtde = document.getElementById("txtQtde").value;
+        var ValorUnitario = document.getElementById("txtPrecoUnitario").value;
+        var SubTotal = document.getElementById("txtSubTotal").value;
+
+        Items.Produtos.push({
+            "CodigoProduto": CodigoProduto.value,
+            "Quantidade": Qtde,
+            "ValorUnitario": ValorUnitario,
+            "ValorTotal": SubTotal
+        });
+
+        document.getElementById("txtJsonProdutos").value = JSON.stringify(Items.Produtos);
+
+        var linhaGrid =
+            "<tr id ='" + CodigoProduto.value + "'>" +
+            "<td>" + CodigoProduto.options[CodigoProduto.selectedIndex].text + "</td>" +
+            "<td>" + ValorUnitario + "</td>" +
+            "<td>" + Qtde + "</td>" +
+            "<td> R$ " + SubTotal + "</td>" +
+            "</tr>";
+
+        gridProdutos.innerHTML += linhaGrid;
+
+        var total = Number(document.getElementById("txtTotal").value.toString().replace(",", ".")) + Number(SubTotal);
+        document.getElementById("txttotal").value = fixaDuasCasasDecimais(total).replace(".",",");
+
+        document.getElementyById("txtQtde").value = "";
+        document.getElementyById("txtSubTotal").value = "";
+        document.getElementyById("txtPrecoUnitario").value = "";
+        document.getElementyById("cboProduto").selectedindex = -1;
+
+    }
+
+    function CalcularSubTotal() {
+        var PrecoUnitario = document.getElementById("txtPrecoUnitario").value;
+        var SubTotal = PrecoUnitario * document.getElementById("txtQtde").value;
+        document.getElementById("txtSubTotal").value = fixaDuasCasasDecimais(SubTotal);
+
+    }
+
+    function BuscarPrecoProduto() {
+        var CodigoProduto = document.getElementById("cboProduto");
+        var url = `/LerValorProduto/${Codigo_produto.value}`;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                document.getElementById("txtPrecoUnitario").value = xhr.responseText;
+            }
+        }
+        xhr.open('GET', url, false);
+        xhr.send(null);
+
+    }
+    function Novo() {
+        Request("Cadastro");
+    }
+    function Listagem() {
+        Request("");
+    }
+    function Excluir(Codigo) {
+        Request("Excluir\\" + Codigo);
+    }
+    function Request(request) {
+        window.location = window.origin + "\\Venda\\" + request;
+    }
+</script>

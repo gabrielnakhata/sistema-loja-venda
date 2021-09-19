@@ -28,8 +28,8 @@ namespace sistema_loja_venda
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             
-            services.AddDbContext<ApplicationDbContext>(options => //localhost\SQLEXPRESS
-            options.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=db-loja-estoque;Trusted_connection=true;MultipleActiveResultSets=true"));
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(@"Server=DESKTOP-UG390NJ;Database=db-loja-estoque;Trusted_connection=true;MultipleActiveResultSets=true"));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();

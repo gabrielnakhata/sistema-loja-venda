@@ -136,10 +136,10 @@ namespace sistema_loja_venda.Controllers
                 return RedirectToAction("Index");
             }
 
-        [HttpGet("LerValorProduto/{Codigo_produto}")]
-        public decimal LerValorProduto(int Codigo_produto)
+        [HttpGet("LerValorProduto/{CodigoProduto}")]
+        public decimal LerValorProduto(int CodigoProduto)
         {
-            return mContext.Produto.Where(x => x.Codigo == Codigo_produto).Select(x => x.Valor).FirstOrDefault();
+            return mContext.Produto.Where(x => x.Codigo == CodigoProduto).Select(x => x.Valor).FirstOrDefault();
         }
     }
 }

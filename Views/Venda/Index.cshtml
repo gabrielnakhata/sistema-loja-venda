@@ -16,15 +16,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-        <tr onclick="Editar(@item.Codigo)" style="cursor:pointer;">
+      @foreach (var item in Model)
+      {
+         <tr onclick="Editar(@item.Codigo)" style="cursor:pointer;">
             <td>@item.Codigo</td>
             <td>@item.Data</td>
             <td>@item.Codigo_cliente</td>
             <td>@item.Total</td>
-        </tr>
-        }
+         </tr>
+      }
     </tbody>
 </table>
 <br />

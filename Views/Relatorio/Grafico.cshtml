@@ -11,18 +11,19 @@
 
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
+    var chart = new myChart(ctx, {
         
         type: 'pie',
 
         data: {
-            labels: ['Coca-Cola', 'Açaí de 500ml'],
+            labels: [@Html.Raw(ViewBag["labels"])],
             Datasets: [{
-                backgroundColor: ['#cecece', '#452120'],
+                backgroundColor: [@Html.Raw(ViewBag["cores"])],
                 borderColor: '#fff',
-                data: [10, 59]
+                data: [@Html.Raw(ViewBag["valores"])]
             }]
         },
+
         options: {}
     });
 </script>

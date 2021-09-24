@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using sistema_loja_venda.Controllers.DAL;
+using sistema_loja_venda.DAL;
 using sistema_loja_venda.Entidades;
 using sistema_loja_venda.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace sistema_loja_venda.Controllers
 {
@@ -25,7 +23,7 @@ namespace sistema_loja_venda.Controllers
             mContext.Dispose(); // Dispose limpar da memória...
             return View(lista);
         }
-        private IEnumerable<SelectListItem> ListaCategoria()
+        private IEnumerable<SelectListItem> ListaCategorias()
         {
             List<SelectListItem> lista = new List<SelectListItem>();
 
@@ -51,7 +49,7 @@ namespace sistema_loja_venda.Controllers
         public IActionResult Cadastro(int? id) // O operador "?", indica que a avariável é anulável, ou seja, pode receber valor "null".
         {
             ProdutoViewModel viewModel = new ProdutoViewModel();
-            viewModel.ListaCategorias = ListaCategoria();
+            viewModel.ListaCategorias = ListaCategorias();
 
             if (id != null)
             {
@@ -78,7 +76,7 @@ namespace sistema_loja_venda.Controllers
                     Descricao = entidade.Descricao,
                     Quantidade = entidade.Quantidade,
                     Valor = (decimal)entidade.Valor,
-                    Codigo_categoria = (int)entidade.Codigo_categoria
+                    Codigo_categoria = entidade.Codigo_categoria
                 };
 
                 if (entidade.Codigo == null)
@@ -94,7 +92,7 @@ namespace sistema_loja_venda.Controllers
             }
             else
             {
-                entidade.ListaCategorias = ListaCategoria();
+                entidade.ListaCategorias = ListaCategorias();
 
                 return View(entidade);
             }

@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using sistema_loja_venda.Controllers.DAL;
+using sistema_loja_venda.DAL;
 using sistema_loja_venda.Entidades;
 using sistema_loja_venda.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace sistema_loja_venda.Controllers
 {
@@ -96,7 +95,7 @@ namespace sistema_loja_venda.Controllers
                 {
                     Venda objVenda = new Venda()
                     {
-                        Codigo = entidade.Codigo,
+                        Codigo = (int)entidade.Codigo,
                         Data = (DateTime)entidade.Data,
                         Codigo_cliente = (int)entidade.Codigo_cliente,
                         Total = entidade.Total,

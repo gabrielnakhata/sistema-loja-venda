@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using sistema_loja_venda.Controllers.DAL;
+using sistema_loja_venda.DAL;
 using sistema_loja_venda.Entidades;
 using System;
 using System.Linq;
@@ -17,12 +17,13 @@ namespace sistema_loja_venda.Controllers
         public IActionResult Grafico()
         {
             var lista = mContext.Venda_Produtos
+                .AsEnumerable()
                 .GroupBy(x => x.Codigo_produto)
                 .Select(y => new GraficoViewModel
                 {
-                    Codigoproduto = y.First().Codigo_produto,
+                    CodigoProduto = y.First().Codigo_produto,
                     Descricao = y.First().Produto.Descricao,
-                    Totalvendido = y.Sum(z => z.Quantidade)
+                    TotalVendido = y.Sum(z=>z.Quantidade)
                 }).ToList();
 
             string valores = string.Empty;
@@ -32,14 +33,14 @@ namespace sistema_loja_venda.Controllers
             var random = new Random();
             for (int i = 0; i < lista.Count; i++)
             {
-                valores += lista[i].Totalvendido.ToString() + ",";
-                labels += "'" + lista[i].Descricao.ToString() + ",";
-                cores += "' " + String.Format("#{0:X6}", random.Next(i, i * 2)) + "',";
+                valores += lista[i].TotalVendido.ToString() + ",";
+                labels += "'" + lista[i].Descricao.ToString() + "',";
+                cores += "'#" + (int.Parse(lista[i].TotalVendido.ToString()) + (i+1)) + "',";
             }
 
-            ViewBag["valores"] = valores;
-            ViewBag["labels"] = labels;
-            ViewBag["cores"] = cores; 
+            ViewBag.Valores = valores;
+            ViewBag.Labels = labels;
+            ViewBag.Cores = cores; 
             
             return View();
         }

@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using sistema_loja_venda.Controllers.DAL;
+using sistema_loja_venda.DAL;
 using sistema_loja_venda.Entidades;
 using sistema_loja_venda.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace sistema_loja_venda.Controllers
 {

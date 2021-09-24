@@ -8,9 +8,9 @@ namespace sistema_loja_venda.Entidades
 {
     public class GraficoViewModel
     {
-        public int Codigoproduto { get; set; }
+        public int CodigoProduto { get; set; }
         public string Descricao { get; set; }
-        public double Totalvendido { get; set; }
+        public double TotalVendido { get; set; }
 
     }
 }

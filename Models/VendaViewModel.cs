@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace sistema_loja_venda.Models
 {
@@ -12,7 +10,7 @@ namespace sistema_loja_venda.Models
         public int? Codigo { get; set; }
 
         [Required(ErrorMessage = "Informe a data da venda!")]
-        public DateTime Data { get; set; }
+        public DateTime? Data { get; set; }
 
         [Required(ErrorMessage = "Informe o cliente!")]
         public int? Codigo_cliente { get; set; }     

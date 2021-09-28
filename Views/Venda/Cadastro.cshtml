@@ -39,24 +39,20 @@
             <label>Preço unitário</label>
             <input id="txtPrecoUnitario" type="number" class="form-control" disabled />
         </div>
+        <div class="col-md-2">
+            <label>Quantidade</label>
+            <input id="txtQuantidade" type="number" class="form-control" onchange="CalcularSubTotal()" />
+        </div>
+        <div class="col-md-2">
+            <label>Sub-Total</label>
+            <input id="txtSubTotal" type="number" class="form-control" disabled />
+        </div>
+        <div class="col-md-2">
+            <br />
+            <button type="button" class="btn btn-info" onclick="AddProduto()">Adicionar</button>
+            <br />
+        </div>
     </div>
-
-    <div class="col-md-2">
-           <label>Quantidade</label>
-           <input id="txtQuantidade" type="number" class="form-control" onchange="CalcularSubTotal()" />
-    </div>
-    <br />
-    <div class="col-md-2">
-           <label>Sub-Total</label>
-           <input id="txtSubTotal" type="number" class="form-control" disabled />
-    </div>
-    <br />
-    <div class="col-md-2">
-           <br/>
-           <button type="button" class="btn btn-info" onclick="AddProduto()">Adicionar</button>
-           <br/>
-    </div>
-
     <br />
 <div class="form-group">
     <div class="col-md-12">
@@ -117,7 +113,7 @@
 
         document.getElementById("txtJsonProdutos").value = JSON.stringify(Items.Produtos);
 
-        // console.log(JSON.stringify(Items.Produtos)); // Console do navegador do JS.
+       //console.log(JSON.stringify(Items.Produtos)); // Console do navegador do JS.
 
         var linhaGrid =
             "<tr id ='" + CodigoProduto.value + "'>" +

@@ -23,7 +23,7 @@
     </div>
     <div class="form-group">
         <div class="col-4">
-            <label>Quantidade</label>
+            <label>Qtde. em Estoque</label>
             <input asp-for="Quantidade" type="number" value="@Model.Quantidade" class="form-control" />
             <span asp-validation-for="Quantidade" class="text-danger"></span>
         </div>
@@ -48,7 +48,6 @@
         <button type="submit" class="btn btn-success">Gravar</button>
         <button type="button" class="btn btn-warning" onclick="Listagem()">Listagem</button>
         <button type="button" class="btn btn-danger" onclick="Excluir(@Model.Codigo)" @disabled>Excluir</button>
-    </div>
     </div>
 </form>
 <script>

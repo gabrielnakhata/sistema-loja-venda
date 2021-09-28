@@ -72,7 +72,7 @@ namespace sistema_loja_venda.Controllers
             {
                 VendaViewModel viewModel = new VendaViewModel();
                 viewModel.ListaClientes = ListaClientes();
-                viewModel.ListaProdutos = ListaProdutos();
+                 viewModel.ListaProdutos = ListaProdutos();
 
             if (id != null)
                 {
@@ -93,13 +93,13 @@ namespace sistema_loja_venda.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Venda objVenda = new Venda()
-                    {
-                        Codigo = (int)entidade.Codigo,
-                        Data = (DateTime)entidade.Data,
-                        Codigo_cliente = (int)entidade.Codigo_cliente,
-                        Total = entidade.Total,
-                        Produtos = JsonConvert.DeserializeObject<ICollection<Venda_Produtos>>(entidade.JsonProdutos)
+                Venda objVenda = new Venda()
+                {
+                    Codigo = entidade.Codigo,
+                    Data = (DateTime)entidade.Data,
+                    Codigo_cliente = (int)entidade.Codigo_cliente,
+                    Total = entidade.Total,
+                    Produtos = JsonConvert.DeserializeObject<ICollection<Venda_Produtos>>(entidade.JsonProdutos)
                     };
 
                     if (entidade.Codigo == null)

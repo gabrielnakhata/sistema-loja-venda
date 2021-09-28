@@ -16,6 +16,7 @@ namespace sistema_loja_venda.Controllers
 
         public IActionResult Grafico()
         {
+         
             var lista = mContext.Venda_Produtos
                 .AsEnumerable()
                 .GroupBy(x => x.Codigo_produto)
@@ -25,7 +26,7 @@ namespace sistema_loja_venda.Controllers
                     Descricao = y.First().Produto.Descricao,
                     TotalVendido = y.Sum(z=>z.Quantidade)
                 }).ToList();
-
+            
             string valores = string.Empty;
             string labels = string.Empty;
             string cores = string.Empty;
@@ -35,9 +36,9 @@ namespace sistema_loja_venda.Controllers
             {
                 valores += lista[i].TotalVendido.ToString() + ",";
                 labels += "'" + lista[i].Descricao.ToString() + "',";
-                cores += "'#" + (int.Parse(lista[i].TotalVendido.ToString()) + (i+1)) + "',";
+                cores += "'" + String.Format("#{0:X6}", random.Next(0x1000000)) + "',";
             }
-
+            
             ViewBag.Valores = valores;
             ViewBag.Labels = labels;
             ViewBag.Cores = cores; 

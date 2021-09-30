@@ -16,7 +16,7 @@ namespace sistema_loja_venda.Controllers
 
         public IActionResult Grafico()
         {
-         
+
             var lista = mContext.Venda_Produtos
                 .AsEnumerable()
                 .GroupBy(x => x.Codigo_produto)
@@ -24,7 +24,7 @@ namespace sistema_loja_venda.Controllers
                 {
                     CodigoProduto = y.First().Codigo_produto,
                     Descricao = y.First().Produto.Descricao,
-                    TotalVendido = y.Sum(z=>z.Quantidade)
+                    TotalVendido = y.Sum(z => z.Quantidade)
                 }).ToList();
             
             string valores = string.Empty;

@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["title"] = "Login";
+    Layout = null;
+}
+
+<link href="~/css/login.css" rel="stylesheet" />
+
+@model sistema_loja_venda.Models.LoginViewModel
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <div style="float:left; width:100%; height:20px;"></div>
+            <img src="~/img/logo.png" id="icon" alt="Logo" />
+            <div style="float:left; width:100%; height:20px;"></div>
+        </div>
+
+        <!-- Login Form -->
+        <form asp-controller="Login" asp-action="Index" method="post">
+            <input asp-for="Email" type="text" class="fadeIn second" placeholder="E-mail">
+            <span asp-validation-for="Email" style="color:red;"></span>
+            <input asp-for="Senha" type="password" class="fadeIn third" placeholder="Senha">
+            <span asp-validation-for="Senha" style="color:red;"></span>
+            <br />
+            <input type="submit" class="fadeIn fourth" value="Entrar">
+            <br />
+            <span style="color:red;">@ViewData["ErroLogin"]</span>
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Esqueceu a Senha?</a>
+        </div>
+
+    </div>
+</div>

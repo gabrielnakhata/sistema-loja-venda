@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using sistema_loja_venda.DAL;
 using sistema_loja_venda.Helpers;
 using sistema_loja_venda.Models;
@@ -12,13 +13,22 @@ namespace sistema_loja_venda.Controllers
     public class LoginController : Controller
     {
         protected ApplicationDbContext mContext;
+        protected IHttpContextAccessor HttpContextAcessor;
 
-        public LoginController(ApplicationDbContext context)
+        public LoginController(ApplicationDbContext context,  IHttpContextAccessor httpContext)
         {
             mContext = context;
+            HttpContextAcessor = httpContext;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? id)
         {
+            if (id != null)
+            {
+                if (id == 0)
+                {
+                    HttpContextAcessor.HttpContext.Session.Clear();
+                }
+            }
             return View();
         }
 
@@ -29,7 +39,7 @@ namespace sistema_loja_venda.Controllers
 
             if (ModelState.IsValid)
             {
-               var senha = Criptografia.GetMd5Hash( model.Senha);
+               var senha = Criptografia.GetMd5Hash(model.Senha);
                var usuario = mContext.Usuario.Where(x => x.Email == model.Email && x.Senha == senha).FirstOrDefault();
 
                if (usuario == null)
@@ -40,6 +50,11 @@ namespace sistema_loja_venda.Controllers
                else
                {
                     // Colocar os dados do usuário na sessão...
+                    HttpContextAcessor.HttpContext.Session.SetString(Sessao.NOME_USUARIO, usuario.Nome);
+                    HttpContextAcessor.HttpContext.Session.SetString(Sessao.EMAIL_USUARIO, usuario.Email);
+                    HttpContextAcessor.HttpContext.Session.SetInt32(Sessao.CODIGO_USUARIO, (int)usuario.Codigo);
+                    HttpContextAcessor.HttpContext.Session.SetInt32(Sessao.LOGADO, 1);
+
                     return RedirectToAction("Index", "Home");
                }
             }

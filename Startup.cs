@@ -49,8 +49,11 @@ namespace sistema_loja_venda
                 // O valor HSTS padrão é 30 dias. Você pode querer mudar isso em cenários de produção, consulte https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseSession();   
 
             app.UseRouting();
 

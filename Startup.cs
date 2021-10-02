@@ -52,7 +52,7 @@ namespace sistema_loja_venda
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+         // app.UseCookiePolicy();
             app.UseSession();   
 
             app.UseRouting();

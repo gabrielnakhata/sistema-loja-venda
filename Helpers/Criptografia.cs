@@ -27,7 +27,6 @@ namespace sistema_loja_venda.Helpers
 
         public static bool VerifyMd5Hash(string input, string hash)
         {
-
             string hashOfInput = GetMd5Hash(input);
 
             StringComparer comparer = StringComparer.OrdinalIgnoreCase;

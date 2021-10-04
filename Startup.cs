@@ -28,7 +28,7 @@ namespace sistema_loja_venda
             });
             
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
+            options.UseSqlServer(Configuration.GetConnectionString("MyStock"))); // A boa prática é que a ConnectionString vá p/ o arquivo appsettings.json!
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();

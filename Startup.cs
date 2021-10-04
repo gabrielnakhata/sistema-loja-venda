@@ -28,7 +28,7 @@ namespace sistema_loja_venda
             });
             
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(@"Server=DESKTOP-UG390NJ;Database=db-loja-estoque;Trusted_connection=true;MultipleActiveResultSets=true"));
+            options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();

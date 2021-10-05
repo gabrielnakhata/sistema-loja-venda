@@ -28,9 +28,14 @@ namespace sistema_loja_venda
             });
             
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("MyStock"))); // A boa prática é que a ConnectionString vá p/ o arquivo appsettings.json!
+            options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
+            // A boa prática é que a ConnectionString vá p/ o arquivo appsettings.json!
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor(); // MUDANÇA - SIMULAR EM "AMBIENTE DE DEPLOY"...
+
+            // services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            // Injeção de Dependências - cuidado com o Singleton!
+
             services.AddSession();
 
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
@@ -45,7 +50,7 @@ namespace sistema_loja_venda
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 // O valor HSTS padrão é 30 dias. Você pode querer mudar isso em cenários de produção, consulte https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

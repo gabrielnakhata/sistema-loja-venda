@@ -1,0 +1,12 @@
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\bin\Debug\net5.0\Dominio.deps.json
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\bin\Debug\net5.0\Dominio.dll
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\bin\Debug\net5.0\ref\Dominio.dll
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\bin\Debug\net5.0\Dominio.pdb
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\obj\Debug\net5.0\Dominio.csproj.AssemblyReference.cache
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\obj\Debug\net5.0\Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\obj\Debug\net5.0\Dominio.AssemblyInfoInputs.cache
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\obj\Debug\net5.0\Dominio.AssemblyInfo.cs
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\obj\Debug\net5.0\Dominio.csproj.CoreCompileInputs.cache
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\obj\Debug\net5.0\Dominio.dll
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\obj\Debug\net5.0\ref\Dominio.dll
+C:\Desenvolvimento\sistema-loja-venda\Dominio\Dominio\obj\Debug\net5.0\Dominio.pdb

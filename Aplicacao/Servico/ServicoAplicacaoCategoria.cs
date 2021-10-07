@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Aplicacao.Servico
 {
-    public class ServicoAplicacaoCategoria : IServicosAplicacaoCategoria
+    public class ServicoAplicacaoCategoria : IServicoAplicacaoCategoria
     {
-
         private readonly IServicoCategoria ServicoCategoria;
+
         public ServicoAplicacaoCategoria(IServicoCategoria servicoCategoria)
         {
             ServicoCategoria = servicoCategoria;      

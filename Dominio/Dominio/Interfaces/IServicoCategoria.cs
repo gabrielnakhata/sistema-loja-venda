@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    interface IServicoCategoria
+    public interface IServicoCategoria
     {
         IEnumerable<Categoria> Listagem();
         void Cadastrar(Categoria categoria);

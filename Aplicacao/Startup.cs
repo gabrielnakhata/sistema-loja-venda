@@ -6,6 +6,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using sistema_loja_venda.DAL;
+using Aplicacao.Servico.Interfaces;
+using Aplicacao.Servico;
+using Dominio.Interfaces;
+using Dominio.Servicos;
+using Dominio.Repositorio;
+using Repositorio.Entidades;
 
 namespace sistema_loja_venda
 {
@@ -27,9 +33,19 @@ namespace sistema_loja_venda
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             
+
+            //Fica por enquanto, pois o projeto ainda não foi migrado
+            //completamente para o padrão DDD...
+
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
             // A boa prática é que a ConnectionString vá p/ o arquivo appsettings.json!
+
+
+            // A PRINCIPIO será o definitivo...
+            services.AddDbContext<Repositorio.Contexto.ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
+
 
             services.AddHttpContextAccessor(); // MUDANÇA - SIMULAR EM "AMBIENTE DE DEPLOY"...
 
@@ -37,6 +53,16 @@ namespace sistema_loja_venda
             // Injeção de Dependências - cuidado com o Singleton!
 
             services.AddSession();
+
+            //Serviço Aplicação: 
+            services.AddScoped<IServicoAplicacaoCategoria, ServicoAplicacaoCategoria>();
+
+            //Domínio:
+            services.AddScoped<IServicoCategoria, ServicoCategoria>();
+
+            //Repositório:
+            services.AddScoped<IRepositorioCategoria, RepositorioCategoria>();
+
 
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
         }

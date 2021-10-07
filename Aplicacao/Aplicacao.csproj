@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dominio\Dominio\Dominio.csproj" />
+    <ProjectReference Include="..\Repositorio\Repositorio\Repositorio.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Aplicacao.Servico.Interfaces;
 using Dominio.Interfaces;
+using sistema_loja_venda.Dominio.Entidades;
 using sistema_loja_venda.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,35 @@ namespace Aplicacao.Servico
             ServicoCategoria = servicoCategoria;      
         }
 
+        public CategoriaViewModel CarregarRegistro(int codigoCategoria)
+        {
+            var registro = ServicoCategoria.CarregarRegistro(codigoCategoria);
+
+            CategoriaViewModel categoria = new CategoriaViewModel()
+            {
+                Codigo = registro.Codigo,
+                Descricao = registro.Descricao
+            };
+
+            return categoria;
+        }
+
+        public void Excluir(int id)
+        {
+            ServicoCategoria.Excluir(id);
+        }
+
+        public void Cadastrar(CategoriaViewModel categoria)
+        {
+            Categoria item = new Categoria()
+            {
+                Codigo = categoria.Codigo,
+                Descricao = categoria.Descricao
+            };
+
+            ServicoCategoria.Cadastrar(item);
+        }
+
         public IEnumerable<CategoriaViewModel> Listagem()
         {
             var Lista = ServicoCategoria.Listagem();
@@ -29,12 +59,11 @@ namespace Aplicacao.Servico
                     Codigo = item.Codigo,
                     Descricao = item.Descricao
                 };
-                listaCategoria.Add(Categoria);
 
+                listaCategoria.Add(Categoria);
             }
 
             return listaCategoria;
-
         }
     }
 }

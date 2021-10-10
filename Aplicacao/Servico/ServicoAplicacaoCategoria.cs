@@ -49,18 +49,17 @@ namespace Aplicacao.Servico
 
         public IEnumerable<CategoriaViewModel> Listagem()
         {
-            var Lista = ServicoCategoria.Listagem();
+            var lista = ServicoCategoria.Listagem();
             List<CategoriaViewModel> listaCategoria = new List<CategoriaViewModel>();
 
-            foreach (var item in Lista)
+            foreach (var item in lista)
             {
-                CategoriaViewModel Categoria = new CategoriaViewModel()
+                CategoriaViewModel categoria = new CategoriaViewModel()
                 {
                     Codigo = item.Codigo,
                     Descricao = item.Descricao
                 };
-
-                listaCategoria.Add(Categoria);
+                listaCategoria.Add(categoria);
             }
 
             return listaCategoria;

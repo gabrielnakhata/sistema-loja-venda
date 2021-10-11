@@ -1,5 +1,6 @@
 ﻿using Aplicacao.Servico.Interfaces;
 using Dominio.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using sistema_loja_venda.Dominio.Entidades;
 using sistema_loja_venda.Models;
 using System;
@@ -17,7 +18,16 @@ namespace Aplicacao.Servico
         {
             ServicoCategoria = servicoCategoria;      
         }
+        public void Cadastrar(CategoriaViewModel categoria)
+        {
+            Categoria item = new Categoria()
+            {
+                Codigo = categoria.Codigo,
+                Descricao = categoria.Descricao
+            };
 
+            ServicoCategoria.Cadastrar(item);
+        }
         public CategoriaViewModel CarregarRegistro(int codigoCategoria)
         {
             var registro = ServicoCategoria.CarregarRegistro(codigoCategoria);
@@ -36,15 +46,21 @@ namespace Aplicacao.Servico
             ServicoCategoria.Excluir(id);
         }
 
-        public void Cadastrar(CategoriaViewModel categoria)
+        public IEnumerable<SelectListItem> ListaCategoriasDropDownList()
         {
-            Categoria item = new Categoria()
-            {
-                Codigo = categoria.Codigo,
-                Descricao = categoria.Descricao
-            };
+            List<SelectListItem> retorno = new List<SelectListItem>();
+            var lista = this.Listagem();
 
-            ServicoCategoria.Cadastrar(item);
+            foreach (var item in lista)
+            {
+                SelectListItem categoria = new SelectListItem()
+                {
+                    Value = item.Codigo.ToString(),
+                    Text = item.Descricao
+                };
+                retorno.Add(categoria);
+            }
+           return retorno;
         }
 
         public IEnumerable<CategoriaViewModel> Listagem()

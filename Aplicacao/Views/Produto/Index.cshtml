@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["title"] = "Produtos";
 }
-@model List<sistema_loja_venda.Entidades.Produto>;
+@model List<sistema_loja_venda.Models.ProdutoViewModel>;
 
 <h2>Produtos
     </h2>
@@ -25,7 +25,7 @@
                 <td>@item.Descricao</td>
                 <td>@item.Quantidade</td>
                 <td>@item.Valor</td>
-                <td>@item.Categoria.Descricao</td>
+                <td>@item.DescricaoCategoria</td>
             </tr>
         }
     </tbody>

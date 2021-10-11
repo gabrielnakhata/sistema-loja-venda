@@ -22,5 +22,6 @@ namespace sistema_loja_venda.Models
         [Required(ErrorMessage = "Informe a categoria do produto!")]
         public int Codigo_categoria { get; set; }
         public IEnumerable<SelectListItem> ListaCategorias { get; set; }
+        public string DescricaoCategoria { get; set; }
     }
 }

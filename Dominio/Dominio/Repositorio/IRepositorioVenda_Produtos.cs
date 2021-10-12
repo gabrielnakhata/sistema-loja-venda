@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Interfaces
+namespace Dominio.Repositorio
 {
-    public interface IServicoVenda : IServicoCRUD<Venda>
+    public interface IRepositorioVenda_Produtos
     {
         IEnumerable<GraficoViewModel> ListaGrafico();
     }

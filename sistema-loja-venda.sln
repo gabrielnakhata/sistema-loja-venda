@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio", "Dominio\Dominio\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplicacao", "Aplicacao\Aplicacao.csproj", "{D0316B29-8B8D-4EAD-932B-1A314B57E67D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio", "Repositorio\Repositorio\Repositorio.csproj", "{261BE19A-AD7C-42E1-B390-25048780377A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositorio", "Repositorio\Repositorio\Repositorio.csproj", "{261BE19A-AD7C-42E1-B390-25048780377A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

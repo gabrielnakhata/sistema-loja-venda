@@ -71,7 +71,7 @@ namespace sistema_loja_venda
             services.AddScoped<IRepositorioCliente, RepositorioCliente>();
             services.AddScoped<IRepositorioProduto, RepositorioProduto>();
             services.AddScoped<IRepositorioVenda, RepositorioVenda>();
-
+            services.AddScoped<IRepositorioVenda_Produtos, RepositorioVenda_Produtos>();
 
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
         }

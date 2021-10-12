@@ -1,5 +1,6 @@
 ﻿using Dominio.Interfaces;
 using Dominio.Repositorio;
+using sistema_loja_venda.Dominio.DTO;
 using sistema_loja_venda.Dominio.Entidades;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,14 @@ namespace Dominio.Servicos
     public class ServicoVenda : IServicoVenda
     {
         IRepositorioVenda RepositorioVenda;
+        IRepositorioVenda_Produtos RepositorioVenda_Produtos;
 
-        public ServicoVenda(IRepositorioVenda repositorioVenda)
+        public ServicoVenda(
+            IRepositorioVenda repositorioVenda,
+            IRepositorioVenda_Produtos repositorioVenda_Produtos)
         {
             RepositorioVenda = repositorioVenda;
+            RepositorioVenda_Produtos = repositorioVenda_Produtos;
         }
         public void Cadastrar(Venda venda)
         {
@@ -35,6 +40,11 @@ namespace Dominio.Servicos
         public IEnumerable<Venda> Listagem()
         {
             return RepositorioVenda.Read();
+        }
+
+        public IEnumerable<GraficoViewModel> ListaGrafico()
+        {
+            return RepositorioVenda_Produtos.ListaGrafico();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Aplicacao.Servico.Interfaces;
 using Dominio.Interfaces;
 using Newtonsoft.Json;
+using sistema_loja_venda.Dominio.DTO;
 using sistema_loja_venda.Dominio.Entidades;
 using sistema_loja_venda.Models;
 using System;
@@ -71,6 +72,25 @@ namespace Aplicacao.Servico
             }
 
             return listaVenda;
+        }
+
+        public IEnumerable<GraficoViewModel> ListaGrafico()
+        {
+            List<GraficoViewModel> lista = new List<GraficoViewModel>();
+            var auxLista = ServicoVenda.ListaGrafico();
+
+            foreach (var item in auxLista)
+            {
+                GraficoViewModel grafico = new GraficoViewModel()
+                {
+                    CodigoProduto = item.CodigoProduto,
+                    Descricao = item.Descricao,
+                    TotalVendido = item.TotalVendido
+                };
+                lista.Add(grafico);
+            }
+
+            return lista;
         }
     }
 }

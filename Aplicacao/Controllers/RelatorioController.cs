@@ -1,7 +1,5 @@
 ﻿using Aplicacao.Servico.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using sistema_loja_venda.DAL;
-using sistema_loja_venda.Entidades;
 using System;
 using System.Linq;
 

@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using sistema_loja_venda.DAL;
 using Aplicacao.Servico.Interfaces;
 using Aplicacao.Servico;
 using Dominio.Interfaces;
 using Dominio.Servicos;
 using Dominio.Repositorio;
 using Repositorio.Entidades;
+using Repositorio.Contexto;
 
 namespace sistema_loja_venda
 {
@@ -32,18 +32,8 @@ namespace sistema_loja_venda
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
-
-            //Fica por enquanto, pois o projeto ainda não foi migrado
-            //completamente para o padrão DDD...
 
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
-            // A boa prática é que a ConnectionString vá p/ o arquivo appsettings.json!
-
-
-            // A PRINCIPIO será o definitivo...
-            services.AddDbContext<Repositorio.Contexto.ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
 
 
@@ -59,12 +49,13 @@ namespace sistema_loja_venda
             services.AddScoped<IServicoAplicacaoCliente, ServicoAplicacaoCliente>();
             services.AddScoped<IServicoAplicacaoProduto, ServicoAplicacaoProduto>();
             services.AddScoped<IServicoAplicacaoVenda, ServicoAplicacaoVenda>();
-
+            services.AddScoped<IServicoAplicacaoUsuario, ServicoAplicacaoUsuario>();
             //Domínio:
             services.AddScoped<IServicoCategoria, ServicoCategoria>();
             services.AddScoped<IServicoCliente, ServicoCliente>();
             services.AddScoped<IServicoProduto, ServicoProduto>();
             services.AddScoped<IServicoVenda, ServicoVenda>();
+            services.AddScoped<IServicoUsuario, ServicoUsuario>();
 
             //Repositório:
             services.AddScoped<IRepositorioCategoria, RepositorioCategoria>();
@@ -72,6 +63,7 @@ namespace sistema_loja_venda
             services.AddScoped<IRepositorioProduto, RepositorioProduto>();
             services.AddScoped<IRepositorioVenda, RepositorioVenda>();
             services.AddScoped<IRepositorioVenda_Produtos, RepositorioVenda_Produtos>();
+            services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
 
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
         }

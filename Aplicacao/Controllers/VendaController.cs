@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Aplicacao.Servico.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using sistema_loja_venda.DAL;
-using sistema_loja_venda.Entidades;
 using sistema_loja_venda.Models;
-using System.Collections.Generic;
-using System.Linq;
+
 
 namespace sistema_loja_venda.Controllers
 {

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using sistema_loja_venda.DAL;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using sistema_loja_venda.Models;
 using System.Diagnostics;
 
@@ -7,12 +7,6 @@ namespace sistema_loja_venda.Controllers
 {
     public class HomeController : Controller
     {
-        protected ApplicationDbContext Repositorio;
-
-        public HomeController(ApplicationDbContext repositorio)
-        {
-            Repositorio = repositorio;
-        }
         public IActionResult Index()
         {
             return View();

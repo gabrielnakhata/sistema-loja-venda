@@ -1,4 +1,5 @@
-﻿using Aplicacao.Servico.Interfaces;
+﻿
+using Aplicacao.Servico.Interfaces;
 using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using sistema_loja_venda.Dominio.Entidades;

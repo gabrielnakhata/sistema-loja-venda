@@ -1,5 +1,6 @@
 ﻿using Aplicacao.Servico.Interfaces;
 using Dominio.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using sistema_loja_venda.Dominio.Entidades;
 using sistema_loja_venda.Models;
 using System;
@@ -49,6 +50,22 @@ namespace Aplicacao.Servico
         public void Excluir(int id)
         {
             ServicoProduto.Excluir(id);
+        }
+        public IEnumerable<SelectListItem> ListaProdutosDropDownList()
+        {
+            List<SelectListItem> retorno = new List<SelectListItem>();
+            var lista = this.Listagem();
+
+            foreach (var item in lista)
+            {
+                SelectListItem produto = new SelectListItem()
+                {
+                    Value = item.Codigo.ToString(),
+                    Text = item.Descricao
+                };
+                retorno.Add(produto);
+            }
+            return retorno;
         }
 
         public IEnumerable<ProdutoViewModel> Listagem()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface IServicoProduto : IServicoCRUD<Produto>
+    public interface IServicoCategoria : IServicoCRUD<Categoria>
     {
       
     }

@@ -11,9 +11,9 @@ using sistema_loja_venda.Dominio.Entidades;
 
 namespace Repositorio.Entidades
 {
-    public class RepositorioCliente : Repositorio<Cliente>, IRepositorioCliente
+    public class RepositorioCategoria : Repositorio<Categoria>, IRepositorioCategoria
     {
-       public RepositorioCliente(ApplicationDbContext dbContext) : base(dbContext) {
+       public RepositorioCategoria(ApplicationDbContext dbContext) : base(dbContext) {
        }
     }
 }
